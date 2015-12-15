@@ -14,7 +14,7 @@ The current image is based on the [java:8-jdk image](https://hub.docker.com/_/ja
 
 ##### Quick start : one active node
 
-    docker run --name tc-server -d anthonydahanne/terracotta-server-oss:4.3.1
+    docker run --name tc-server -p 9510:9510 -d anthonydahanne/terracotta-server-oss:4.3.1
 
 A quick look at the logs :
 
