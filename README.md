@@ -1,6 +1,6 @@
 ### Terracotta Server OSS running in a Docker container
 
-Here are instructions to build and execute Docker images for Terracotta OSS server and a client
+Make sure you checkout out server/ and client/ README.md
 
 #### Before proceeding, make sure to
 * have installed the latest [Docker Toolbox](https://www.docker.com/docker-toolbox)
