@@ -2,12 +2,6 @@
 FROM java:openjdk-8-jdk
 MAINTAINER Anthony Dahanne <anthony.dahanne@softwareag.com>
 
-# downloading, untarring and removing the archive - to retrieve terracotta-toolkit-runtime
-RUN wget -q https://d2zwv9pap9ylyd.cloudfront.net/terracotta-4.3.1.tar.gz \
-  && mkdir bigmemory \
-  && tar xvzf terracotta-4.3.1.tar.gz -C /bigmemory --strip-components=1 \
-  && rm terracotta-4.3.1.tar.gz
-
 # maven section inspired by https://github.com/carlossg/docker-maven/blob/8ab542b907e69c5269942bcc0915d8dffcc7e9fa/jdk-8/Dockerfile
 ENV MAVEN_VERSION 3.3.9
 
