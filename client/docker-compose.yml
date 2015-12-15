@@ -1,8 +1,8 @@
 petclinic:
-  build: .
+  image: anthonydahanne/spring-petclinic-clustered:4.3.1
   ports:
    - "9966:9966"
   links:
    - tsa
 tsa:
-  build: ../server/
+  image: anthonydahanne/terracotta-server-oss:4.3.1
