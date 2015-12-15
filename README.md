@@ -1,6 +1,6 @@
 ### Terracotta Server OSS running in a Docker container
 
-Make sure you checkout out server/ and client/ README.md
+Make sure you checkout server/ and client/ README.md
 
 #### Before proceeding, make sure to
 * have installed the latest [Docker Toolbox](https://www.docker.com/docker-toolbox)
