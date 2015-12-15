@@ -24,7 +24,7 @@ Should return some logs ending with :
 
     [TC] 2015-12-05 04:17:31,299 INFO - Management server started on 0.0.0.0:9540
 
-You can also load [http://DOCKER_HOST:9510/config](http://DOCKER_HOST:9510/config) from the host machine to see the configuration of your Terracotta Server Array.
+You can also load [http://DOCKER_HOST:9510/config](http://DOCKER_HOST:9510/config) to see the configuration of your Terracotta Server Array.
 
 It's now ready and waiting for clients
 

@@ -1,0 +1,8 @@
+petclinic:
+  build: .
+  ports:
+   - "9966:9966"
+  links:
+   - tsa
+tsa:
+  build: ../server/
