@@ -8,13 +8,13 @@ The Terracotta 4.x OSS offering includes the following:
  *  Distributed In-Memory Data Management with fault-tolerance via Terracotta Server (1 stripe – active with optional mirror)
  *  In memory off-heap storage - take advantage of all the RAM in your server
 
-The current image is based on the [java:8-jdk image](https://hub.docker.com/_/java/), and adds [Terracotta 4.3.1 OSS on top of it](http://terracotta.org/downloads/open-source/catalog)
+The current image is based on the [java:8-jdk image](https://hub.docker.com/_/java/), and adds [Terracotta 4.3.2 OSS on top of it](http://terracotta.org/downloads/open-source/catalog)
 
 #### How to start your Terracotta Server(s) in Docker containers
 
 ##### Quick start : one active node
 
-    docker run --name tc-server -p 9510:9510 -d anthonydahanne/terracotta-server-oss:4.3.1
+    docker run --name tc-server -p 9510:9510 -d anthonydahanne/terracotta-server-oss:4.3.2
 
 A quick look at the logs :
 
@@ -106,17 +106,17 @@ mhs-demo2     -        virtualbox   Running   tcp://192.168.99.107:2376   mhs-de
 
 ##### Starting the containers !
 
-    $ docker run --hostname tsa --name tsa -d -e TC_SERVER1=tsa -e TC_SERVER2=tsa2 --net=my-net --env="constraint:node==mhs-demo1" anthonydahanne/terracotta-server-oss:4.3.1
-    $ docker run --hostname tsa2 --name tsa2 -d -e TC_SERVER2=tsa2 -e TC_SERVER1=tsa --net=my-net --env="constraint:node==mhs-demo2" anthonydahanne/terracotta-server-oss:4.3.1
-    $ docker run --name petclinic -d --net=my-net --env="constraint:node==mhs-demo0" -p 9966:9966 anthonydahanne/spring-petclinic-clustered:4.3.1
+    $ docker run --hostname tsa --name tsa -d -e TC_SERVER1=tsa -e TC_SERVER2=tsa2 --net=my-net --env="constraint:node==mhs-demo1" anthonydahanne/terracotta-server-oss:4.3.2
+    $ docker run --hostname tsa2 --name tsa2 -d -e TC_SERVER2=tsa2 -e TC_SERVER1=tsa --net=my-net --env="constraint:node==mhs-demo2" anthonydahanne/terracotta-server-oss:4.3.2
+    $ docker run --name petclinic -d --net=my-net --env="constraint:node==mhs-demo0" -p 9966:9966 anthonydahanne/spring-petclinic-clustered:4.3.2
 
 You should end up with something similar to :
 ````
 $ docker ps
 CONTAINER ID        IMAGE                                             COMMAND                  CREATED             STATUS              PORTS                           NAMES
-8dbf24cfaae3        anthonydahanne/spring-petclinic-clustered:4.3.1   "mvn tomcat7:run -Dts"   56 seconds ago      Up 55 seconds       192.168.99.109:9966->9966/tcp   mhs-demo0/petclinic
-b7e10058a909        anthonydahanne/terracotta-server-oss:4.3.1        "/bin/sh -c 'sed -i -"   3 minutes ago       Up 3 minutes        9510/tcp, 9530/tcp, 9540/tcp    mhs-demo1/tsa2
-8999a50ef131        anthonydahanne/terracotta-server-oss:4.3.1        "/bin/sh -c 'sed -i -"   9 minutes ago       Up 9 minutes        9510/tcp, 9530/tcp, 9540/tcp    mhs-demo2/tsa
+8dbf24cfaae3        anthonydahanne/spring-petclinic-clustered:4.3.2   "mvn tomcat7:run -Dts"   56 seconds ago      Up 55 seconds       192.168.99.109:9966->9966/tcp   mhs-demo0/petclinic
+b7e10058a909        anthonydahanne/terracotta-server-oss:4.3.2        "/bin/sh -c 'sed -i -"   3 minutes ago       Up 3 minutes        9510/tcp, 9530/tcp, 9540/tcp    mhs-demo1/tsa2
+8999a50ef131        anthonydahanne/terracotta-server-oss:4.3.2        "/bin/sh -c 'sed -i -"   9 minutes ago       Up 9 minutes        9510/tcp, 9530/tcp, 9540/tcp    mhs-demo2/tsa
 ````
 
 Now go to http://192.168.99.109:9966/petclinic/
@@ -141,4 +141,4 @@ Congratulations ! You succesfully started an Active / Passive Terracotta Cluster
 To build this [Dockerfile](https://github.com/anthonydahanne/terracotta-oss-docker/blob/master/server/Dockerfile), clone this [git repository](https://github.com/anthonydahanne/terracotta-oss-docker) and run :
 
     $ cd server
-    $ docker build -t terracotta-server-oss:4.3.1 .
+    $ docker build -t terracotta-server-oss:4.3.2 .

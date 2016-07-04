@@ -2,11 +2,11 @@
 FROM java:openjdk-8-jdk
 MAINTAINER Anthony Dahanne <anthony.dahanne@softwareag.com>
 
-# downloading, untarring and removing the archive
-RUN wget -q https://d2zwv9pap9ylyd.cloudfront.net/terracotta-4.3.1.tar.gz \
+# downloading, untarring and removing the archive, link from http://terracotta.org/downloads/open-source/catalog
+RUN wget -q http://d2zwv9pap9ylyd.cloudfront.net/terracotta-4.3.2.tar.gz \
   && mkdir /terracotta \
-  && tar xvzf terracotta-4.3.1.tar.gz -C /terracotta --strip-components=1 \
-  && rm terracotta-4.3.1.tar.gz
+  && tar xvzf terracotta-4.3.2.tar.gz -C /terracotta --strip-components=1 \
+  && rm terracotta-4.3.2.tar.gz
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 

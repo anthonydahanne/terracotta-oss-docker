@@ -9,11 +9,11 @@ If you want to connect this client app to a Terracotta Server Array running on a
 
 Start the server
 
-    docker run --name tc-server -d anthonydahanne/terracotta-server-oss:4.3.1
+    docker run --name tc-server -d anthonydahanne/terracotta-server-oss:4.3.2
 
 and then start the client :
 
-    docker run -d --name petclinic -p 9966:9966 --link tc-server:tsa anthonydahanne/spring-petclinic-clustered:4.3.1
+    docker run -d --name petclinic -p 9966:9966 --link tc-server:tsa anthonydahanne/spring-petclinic-clustered:4.3.2
 
 
 You can have a look at the logs using
@@ -43,4 +43,4 @@ And you'll be able to access the client app on http://DOCKER_HOST:9966/petclinic
 
 Once Docker  is up and running in your environment, cd into the server directory containing the Dockerfile and terracotta folder, and :
 
-    docker build  -t spring-petclinic-clustered:4.3.1 .
+    docker build  -t spring-petclinic-clustered:4.3.2 .
