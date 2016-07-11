@@ -57,25 +57,14 @@ NETWORK ID          NAME                DRIVER
 [...]
 ````
 
-We would need first to stop mhs-demo0 and mhs-demo1 [to give them some more RAM](http://stackoverflow.com/a/32834453/24069) :
+We would need first to stop mhs-demo0 and mhs-demo1 [to give them some more RAM](http://stackoverflow.com/a/36982696/24069) :
 
     $ docker-machine stop mhs-demo0 mhs-demo1
 
-And then, in
+And then
 
-    ~/.docker/machine/machines/mhs-demo0/config.json
-
-and
-
-    ~/.docker/machine/machines/mhs-demo1/config.json
-
-Adjust from
-
-    "Memory":1024
-
-to
-
-    "Memory":2048
+    $ VBoxManage modifyvm mhs-demo0 --memory 2048
+    $ VBoxManage modifyvm mhs-demo1 --memory 2048
 
 Now you can restart those 2 hosts :
 
