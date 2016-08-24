@@ -16,29 +16,19 @@ The Initial Developer of the Covered Software is
 Terracotta, Inc., a Software AG company
 -->
 
-<tc:tc-config xmlns:tc="http://www.terracotta.org/config">
-
+<tc-config xmlns="http://www.terracotta.org/config">
+  <services>
+    <service xmlns:ohr="http://www.terracotta.org/config/offheap-resource" id="resources">
+      <ohr:offheap-resources>
+        <ohr:resource name="OFFHEAP_RESOURCE_NAME" unit="OFFHEAP_RESOURCE_UNIT">OFFHEAP_RESOURCE_SIZE</ohr:resource>
+      </ohr:offheap-resources>
+    </service>
+  </services>
   <servers>
-    <mirror-group>
-      <server host="%h" name="%h" >
-        <tsa-port>9510</tsa-port>
-        <management-port>9540</management-port>
-        <tsa-group-port>9530</tsa-group-port>
-        <offheap>
-          <enabled>OFFHEAP_ENABLED</enabled>
-          <maxDataSize>OFFHEAP_MAX_SIZE</maxDataSize>
-        </offheap>
-        <logs>stdout:</logs>
-      </server>
-    </mirror-group>
-
-    <update-check>
-      <enabled>false</enabled>
-    </update-check>
+    <server host="%h" name="%h">
+      <logs>stdout:</logs>
+      <tsa-port>9510</tsa-port>
+      <tsa-group-port>9530</tsa-group-port>
+    </server>
   </servers>
-
-  <clients>
-    <logs>stdout:</logs>
-  </clients>
-
-</tc:tc-config>
+</tc-config>

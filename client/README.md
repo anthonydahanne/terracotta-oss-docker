@@ -9,11 +9,11 @@ If you want to connect this client app to a Terracotta Server Array running on a
 
 Start the server
 
-    docker run --name tc-server -d anthonydahanne/terracotta-server-oss:4.3.2
+    docker run --name tc-server -d anthonydahanne/terracotta-server-oss:5.0.0
 
 and then start the client :
 
-    docker run -d --name petclinic -p 9966:9966 --link tc-server:tsa anthonydahanne/spring-petclinic-clustered:4.3.2
+    docker run -d --name petclinic -p 8080:8080 --link tc-server:tsa anthonydahanne/spring-petclinic-clustered:5.0.0
 
 
 You can have a look at the logs using
@@ -24,7 +24,13 @@ If everything goes well, you should see :
 
     INFO - Connection successfully established to server at 192.168.59.103:9510
 
-At this point go to http://DOCKER_HOST:9966/petclinic/ from the docker host machine to interact with this client webapp.
+At this point go to http://DOCKER_HOST:8080/ from the docker host machine to interact with this client webapp.
+
+Go click on "Find Owners", launch several searches,you'll them they're getting cached, in the log :
+
+    org.ehcache.Demo                         : Returning cached result for VetName
+
+
 Click on Veterinarians, you should see this list of Veterinarians stored in the cluster :
 
 ![Spring pet clinic list of Veterinarians](images/vets.png)
@@ -36,11 +42,10 @@ It's as easy as typing :
 
     docker-compose up -d
 
-And you'll be able to access the client app on http://DOCKER_HOST:9966/petclinic/ , and the tmc on http://localhost:9889 (please read the management documentation to see how to configure the TMC to monitor the TSA)
-
+And you'll be able to access the client app on http://DOCKER_HOST:8080/
 
 ### How to build this image
 
 Once Docker  is up and running in your environment, cd into the server directory containing the Dockerfile and terracotta folder, and :
 
-    docker build  -t spring-petclinic-clustered:4.3.2 .
+    docker build  -t spring-petclinic-clustered:5.0.0 .

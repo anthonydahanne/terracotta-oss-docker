@@ -1,8 +1,12 @@
-petclinic:
-  image: anthonydahanne/spring-petclinic-clustered:4.3.2
-  ports:
-   - "9966:9966"
-  links:
-   - tsa
-tsa:
-  image: anthonydahanne/terracotta-server-oss:4.3.2
+version: '2'
+services:
+    petclinic:
+        build: .
+        links:
+          - "terracotta:tsa"
+        ports:
+            - 8080:8080
+        depends_on:
+            - terracotta
+    terracotta:
+        build: ../server

@@ -1,26 +1,31 @@
 # using the latest OpenJDK 8 update (see https://registry.hub.docker.com/u/library/java/ for more details)
-FROM java:openjdk-8-jdk
+FROM openjdk:8-jdk-alpine
 MAINTAINER Anthony Dahanne <anthony.dahanne@softwareag.com>
 
-# maven section inspired by https://github.com/carlossg/docker-maven/blob/8ab542b907e69c5269942bcc0915d8dffcc7e9fa/jdk-8/Dockerfile
-ENV MAVEN_VERSION 3.3.9
+# add few utilities, upgrade tar
+RUN apk --update add tar openssl ca-certificates bash curl git
 
-RUN curl -fsSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar xzf - -C /usr/share \
-  && mv /usr/share/apache-maven-$MAVEN_VERSION /usr/share/maven \
-  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+RUN mkdir /root/app
+WORKDIR /root/app/
 
-ENV MAVEN_HOME /usr/share/maven
+RUN echo "yup"
 
-RUN git clone https://github.com/anthonydahanne/spring-petclinic.git /usr/src/app/
-WORKDIR /usr/src/app/
-RUN git checkout using-oss-clustered-ehcache
+RUN git clone https://github.com/anthonydahanne/spring-petclinic.git /root/app/ \
+  && git checkout ehcache3-boot-clustered
+
 
 # in a more serious deployment scenario and environment, this is where you would download your java jar
-RUN mvn package -DskipTests
+RUN ./mvnw clean package \
+  && rm -rf /.m2/repository
 
-# expose the webapp port
-EXPOSE 9966
+# add the clustered config
+ADD config/ /root/app/config/
+ENV SPRING_CACHE_JCACHE_CONFIG "file:///root/app/config/ehcache-clustered.xml"
+ENV OFFHEAP_RESOURCE_NAME "primary-server-resource"
 
-ENTRYPOINT ["mvn", "tomcat7:run", "-Dtsa_hostname=tsa"]
-
+VOLUME /tmp
+EXPOSE 8080
+ENTRYPOINT sed -i -r 's/OFFHEAP_RESOURCE_NAME/'$OFFHEAP_RESOURCE_NAME'/' /root/app/config/ehcache*.xml \
+  && cat /root/app/config/ehcache-clustered.xml \
+  && java -Djava.security.egd=file:/dev/./urandom -jar /root/app/target/petclinic.war \
 
