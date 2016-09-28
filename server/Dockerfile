@@ -6,11 +6,10 @@ MAINTAINER Anthony Dahanne <anthony.dahanne@softwareag.com>
 RUN apk --update add tar openssl ca-certificates bash
 
 # downloading, untarring and removing the archive, link from https://github.com/ehcache/ehcache3/releases
-# TEMPORARY : should be : https://github.com/ehcache/ehcache3/releases/download/v3.1.1/ehcache-clustered-3.1.1-kit.tgz
-RUN wget -q https://oss.sonatype.org/service/local/repositories/snapshots/content/org/ehcache/ehcache-clustered/3.1.2-SNAPSHOT/ehcache-clustered-3.1.2-20160824.163405-2429-kit.tgz \
+RUN wget -q https://github.com/ehcache/ehcache3/releases/download/v3.1.2/ehcache-clustered-3.1.2-kit.tgz \
   && mkdir /terracotta \
-  && tar xvzf ehcache-clustered-3.1.2-20160824.163405-2429-kit.tgz -C /terracotta --strip-components=1 \
-  && rm ehcache-clustered-3.1.2-20160824.163405-2429-kit.tgz
+  && tar xvzf ehcache-clustered-3.1.2-kit.tgz -C /terracotta --strip-components=1 \
+  && rm ehcache-clustered-3.1.2-kit.tgz
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/
 

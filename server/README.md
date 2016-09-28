@@ -8,7 +8,7 @@ The Terracotta 5.x OSS offering includes the following:
  *  Coming soon --> Distributed In-Memory Data Management with fault-tolerance via Terracotta Server (1 stripe – active with optional mirror)
  *  In memory off-heap storage - take advantage of all the RAM in your server
 
-The current image is based on the [java:8-jdk image](https://hub.docker.com/_/openjdk/), and adds [Terracotta 5.0.0 OSS on top of it](https://github.com/ehcache/ehcache3/releases)
+The current image is based on the [openjdk:8-jdk-alpine image](https://hub.docker.com/_/openjdk/), and adds [Terracotta 5.0.0 OSS on top of it](https://github.com/ehcache/ehcache3/releases)
 
 #### How to start your Terracotta Server(s) in Docker containers
 
