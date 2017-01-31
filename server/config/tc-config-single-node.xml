@@ -17,13 +17,13 @@ Terracotta, Inc., a Software AG company
 -->
 
 <tc-config xmlns="http://www.terracotta.org/config">
-  <services>
-    <service xmlns:ohr="http://www.terracotta.org/config/offheap-resource" id="resources">
+  <plugins>
+    <config xmlns:ohr="http://www.terracotta.org/config/offheap-resource" >
       <ohr:offheap-resources>
         <ohr:resource name="OFFHEAP_RESOURCE_NAME" unit="OFFHEAP_RESOURCE_UNIT">OFFHEAP_RESOURCE_SIZE</ohr:resource>
       </ohr:offheap-resources>
-    </service>
-  </services>
+    </config>
+  </plugins>
   <servers>
     <server host="%h" name="%h">
       <logs>stdout:</logs>
