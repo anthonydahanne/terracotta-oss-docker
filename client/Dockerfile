@@ -21,6 +21,11 @@ RUN mvn package -DskipTests
 # expose the webapp port
 EXPOSE 9966
 
-ENTRYPOINT ["mvn", "tomcat7:run", "-Dtsa_hostname=tsa"]
+# the default TSA url - can be overriden to match your environments
+ENV TSA_URL 'tsa:9510'
 
+# use a custom entry point to be able to read the ENV var properly
+COPY ./docker-entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/docker-entrypoint.sh
 
+ENTRYPOINT ["docker-entrypoint.sh"]
